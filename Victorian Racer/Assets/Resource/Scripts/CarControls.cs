@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class CarControls : MonoBehaviour
+{
+    public Wheel[] wheels;
+    [SerializeField] private float Power;
+    [SerializeField] private float MaxAngle;
+
+    private float m_Forward;
+    private float m_Angle;
+    private float m_Brake;
+
+    private Rigidbody carRB;
+
+    //Max overall speed to avoid becoming too fast for the track
+    [SerializeField] private float _NormalMaxMagnitude;
+    [SerializeField] private float _CurrentMaxMagnitude;
+
+    //Enables Tire Marks to appear under the tires and what the minimum overall speed needs to be before the marks are able to appear
+    //[SerializeField] private TrailRenderer[] trails;
+    //[SerializeField] private float minSpeedForMarks = 10f;
+
+    [SerializeField] private float downForce = 1f;
+
+    void Start()
+    {
+        carRB = GetComponent<Rigidbody>();
+
+        carRB.centerOfMass -= new Vector3(0f, 0.7f, 0f);
+
+        carRB.AddForce(-transform.up * downForce);
+
+        _CurrentMaxMagnitude = _NormalMaxMagnitude;
+    }
+
+    void Update()
+    {
+        m_Forward = Input.GetAxis("Vertical");
+        m_Angle = Input.GetAxis("Horizontal");
+
+        //if (m_Angle != 0 && carRB.velocity.magnitude > minSpeedForMarks)
+        //{
+        //    foreach (var trail in trails)
+        //    {
+        //        trail.emitting = true;
+        //    }
+        //}
+        //else
+        //{
+        //    foreach (var trail in trails)
+        //    {
+        //        trail.emitting = false;
+        //    }
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (Wheel _wheel in wheels)
+        {
+            _wheel.Accelerate(m_Forward * Power);
+            //_wheel.Brake(m_Brake * Power);
+            _wheel.Turn(m_Angle * MaxAngle);
+        }
+
+        //Caps your max speed so you don't gain speed infinitely
+        if (carRB.velocity.magnitude >= _CurrentMaxMagnitude)
+        {
+            carRB.velocity = Vector3.ClampMagnitude(carRB.velocity, _CurrentMaxMagnitude);
+        }
+
+    }
+}
