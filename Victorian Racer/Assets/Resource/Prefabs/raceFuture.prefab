@@ -236,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2340887520406635167}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.57197, y: 0, z: -2.016634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -263,12 +263,10 @@ MonoBehaviour:
   - {fileID: 5749867107647995449}
   - {fileID: 2626210560824722791}
   - {fileID: 1292021384477963496}
-  Power: 100
+  Power: 500
   MaxAngle: 30
   _NormalMaxMagnitude: 20
   _CurrentMaxMagnitude: 15
-  trails: []
-  minSpeedForMarks: 10
   downForce: 1
 --- !u!54 &7065472983824046962
 Rigidbody:
@@ -278,7 +276,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2340887520406635167}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
