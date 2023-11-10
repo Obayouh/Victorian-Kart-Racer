@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainGameScenes/main menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Vincent.unity
+    guid: 18764ecba54484e459394628c005677f
+  - enabled: 1
+    path: Assets/Scenes/MainGameScenes/SettingsScene.unity
+    guid: b35f09e87594d05449a35443d3528494
+  - enabled: 1
+    path: Assets/Scenes/MainGameScenes/Laptimes.unity
+    guid: 7b78595b718752540be5e776b2cab833
+  - enabled: 1
+    path: Assets/Scenes/MainGameScenes/Credits.unity
+    guid: 12c8fe25ac1d75048a9fda9054757821
+  - enabled: 1
+    path: Assets/Scenes/MainGameScenes/Controls.unity
+    guid: a14591688d27d794c913fbac504d3e92
+  - enabled: 1
+    path: Assets/Scenes/MainGameScenes/AudioOptions.unity
+    guid: 6d466c61eb525194696ef596c7888fd7
   m_configObjects: {}
