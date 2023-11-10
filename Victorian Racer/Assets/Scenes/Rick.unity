@@ -401,7 +401,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4010666138275728923
+--- !u!1001 &8054503829251390978
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -409,66 +409,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5042976693495511785, guid: 6b99da41859e16c4a9e416a2b69146de,
+        type: 3}
+      propertyPath: m_Name
+      value: church front blockout
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.553794
+      value: 7.966799
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.22
+      value: 21.27
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.393778
+      value: 0.74476814
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4962160999116554677, guid: 6a97302ad8b39a64d89d46f1272c3282,
+    - target: {fileID: 5672160833957781587, guid: 6b99da41859e16c4a9e416a2b69146de,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7947939548136934921, guid: 6a97302ad8b39a64d89d46f1272c3282,
-        type: 3}
-      propertyPath: m_Name
-      value: church front blockout
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6a97302ad8b39a64d89d46f1272c3282, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 6b99da41859e16c4a9e416a2b69146de, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -476,4 +476,4 @@ SceneRoots:
   - {fileID: 2112258588}
   - {fileID: 902854822}
   - {fileID: 667091668}
-  - {fileID: 4010666138275728923}
+  - {fileID: 8054503829251390978}
