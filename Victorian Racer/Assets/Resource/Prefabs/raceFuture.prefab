@@ -266,6 +266,7 @@ MonoBehaviour:
   - {fileID: 1292021384477963496}
   Power: 500
   MaxAngle: 30
+  Turnspeed: 75
   _NormalMaxMagnitude: 20
   _CurrentMaxMagnitude: 15
   downForce: 1

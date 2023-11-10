@@ -8,6 +8,7 @@ public class CarControls : MonoBehaviour
     public Wheel[] wheels;
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
+    [SerializeField] private float Turnspeed;
 
     private float m_Forward;
     private float m_Angle;
@@ -55,6 +56,11 @@ public class CarControls : MonoBehaviour
         //        trail.emitting = false;
         //    }
         //}
+
+        if (m_Angle == 1 || m_Angle == -1)
+        {
+            TurnCar();
+        }
     }
 
     private void FixedUpdate()
@@ -72,5 +78,12 @@ public class CarControls : MonoBehaviour
             carRB.velocity = Vector3.ClampMagnitude(carRB.velocity, _CurrentMaxMagnitude);
         }
 
+    }
+
+    public void TurnCar()
+    {
+        float turnDriftVelocity = Vector3.Dot(transform.forward, (carRB.position + carRB.velocity - carRB.position).normalized);
+        float turnDrift = m_Angle * Turnspeed * Time.deltaTime * turnDriftVelocity;
+        transform.Rotate(0, turnDrift, 0, Space.World);
     }
 }
