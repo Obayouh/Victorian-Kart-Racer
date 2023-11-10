@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 8751661773391641800}
   - component: {fileID: 7065472983824046962}
   - component: {fileID: 5940230389641953128}
+  - component: {fileID: 6781331267622771506}
   m_Layer: 0
   m_Name: raceFuture
   m_TagString: Untagged
@@ -316,6 +317,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.45510733, z: 2.582053}
   m_Center: {x: 0, y: 0.62160367, z: 0.012910962}
+--- !u!114 &6781331267622771506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340887520406635167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b069387ea83c24b48a621aeab672d7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownText: {fileID: 0}
+  player: {fileID: 3363683563937119110}
+  lapTimer: {fileID: 0}
 --- !u!1 &2658998813818852039
 GameObject:
   m_ObjectHideFlags: 0
