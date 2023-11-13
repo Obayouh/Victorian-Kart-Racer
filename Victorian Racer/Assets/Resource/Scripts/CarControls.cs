@@ -64,7 +64,7 @@ public class CarControls : MonoBehaviour
             TurnCar();
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             ShootFireBall = true;
         }
