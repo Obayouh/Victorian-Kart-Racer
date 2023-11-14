@@ -8,21 +8,28 @@ public class FireBallAbility : MonoBehaviour
     [SerializeField] private Transform _SpawnpointFireBall;
 
     private CarControls _carControls;
+    private MousePos3D _mousePos3D;
     private float _AbilityCooldownTime = 5;
     private float _FireBallTimer = 5;
 
     private void Start()
     {
         _carControls = GetComponent<CarControls>();
+        _mousePos3D = FindObjectOfType<MousePos3D>();
     }
 
     void Update()
     {
-        if (_carControls.ShootFireBall && _FireBallTimer <= 0)
+        if (_FireBallTimer <= 0)
         {
-            Instantiate(_FireBallPrefab, _SpawnpointFireBall.position, _SpawnpointFireBall.rotation);
-            _carControls.ShootFireBall  = false;
-            _FireBallTimer = _AbilityCooldownTime;
+            _SpawnpointFireBall.LookAt(_mousePos3D.MousePos);
+
+            if (_carControls.ShootFireBall)
+            {
+                Instantiate(_FireBallPrefab, _SpawnpointFireBall.position, _SpawnpointFireBall.rotation);
+                _carControls.ShootFireBall = false;
+                _FireBallTimer = _AbilityCooldownTime;
+            }
         }
         else if (_carControls.ShootFireBall && _FireBallTimer >= 0)
         {
