@@ -20,6 +20,8 @@ public class AICar : MonoBehaviour
     private structAI ai;
 
     private GameObject playerPosition;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject pitchforkPrefab;
 
     private void Start()
     {
@@ -42,7 +44,7 @@ public class AICar : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Wall") == true)
+        if (other.CompareTag("AICheckpoint") == true)
         {
             ai.idx = CalcNextCheckpoint();
         }
@@ -61,5 +63,10 @@ public class AICar : MonoBehaviour
     private int ExtractNumberFromString(string s1)
     {
         return System.Convert.ToInt32(System.Text.RegularExpressions.Regex.Replace(s1, "[^0-9]", ""));
+    }
+
+    private void AttackPlayer()
+    {
+
     }
 }

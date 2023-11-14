@@ -36,6 +36,7 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
+        //Creates the sphere around the enemy that indicates how much it can truly see in a 360 degree angle around itself
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if (rangeChecks.Length != 0)
@@ -43,6 +44,7 @@ public class FieldOfView : MonoBehaviour
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
+            //Creates the vision cone the enemy can see with
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);

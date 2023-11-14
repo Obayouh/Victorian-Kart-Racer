@@ -38,7 +38,7 @@ public class FireBallAbility : MonoBehaviour
         else
         {
             _FireBallTimer -= Time.deltaTime;
-            Debug.Log(_FireBallTimer);
+            //Debug.Log(_FireBallTimer);
         }
     }
 }

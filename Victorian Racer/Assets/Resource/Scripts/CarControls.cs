@@ -42,6 +42,10 @@ public class CarControls : MonoBehaviour
     void Update()
     {
         m_Forward = Input.GetAxis("Vertical");
+        if (m_Forward == 0)
+        {
+            m_Brake = Input.GetAxis("Vertical");
+        }
         m_Angle = Input.GetAxis("Horizontal");
 
         //if (m_Angle != 0 && carRB.velocity.magnitude > minSpeedForMarks)
@@ -75,7 +79,7 @@ public class CarControls : MonoBehaviour
         foreach (Wheel _wheel in wheels)
         {
             _wheel.Accelerate(m_Forward * Power);
-            //_wheel.Brake(m_Brake * Power);
+            _wheel.Brake(m_Brake * Power);
             _wheel.Turn(m_Angle * MaxAngle);
         }
 

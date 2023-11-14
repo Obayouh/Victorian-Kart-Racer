@@ -5,17 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Checkpoints
-  - Wall
   - Pitchfork
+  - AICheckpoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Target
   - Water
   - UI
-  - 
-  - 
+  - Walls
+  - Obstacle
   - 
   - 
   - 
