@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoints
   - Wall
+  - Pitchfork
   layers:
   - Default
   - TransparentFX

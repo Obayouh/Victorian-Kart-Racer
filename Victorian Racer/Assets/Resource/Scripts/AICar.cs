@@ -14,10 +14,12 @@ public class AICar : MonoBehaviour
     }
 #endregion
 
-    public float MoveSpeed = 1.0f;
-    public float TurnSpeed = 0.1f;
+    [SerializeField] private float MoveSpeed = 1.0f;
+    [SerializeField] private float TurnSpeed = 0.1f;
     private Rigidbody rb = null;
     private structAI ai;
+
+    private GameObject playerPosition;
 
     private void Start()
     {
@@ -25,6 +27,8 @@ public class AICar : MonoBehaviour
 
         ai.checkpoints = GameObject.FindWithTag("Checkpoints").transform;
         ai.idx = 0;
+
+        playerPosition = GameObject.FindGameObjectWithTag("Player");
     }
     private void FixedUpdate()
     {

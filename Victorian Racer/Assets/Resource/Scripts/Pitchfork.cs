@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Pitchfork : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float travelSpeed;
+
+    private void Start()
     {
-        
+        Invoke("DestroyBullet", 4f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(0, travelSpeed * Time.deltaTime, 0);
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DestroyBullet();
+        }
+    }
+
+    private void DestroyBullet()
+    {
+        Destroy(gameObject);
     }
 }
