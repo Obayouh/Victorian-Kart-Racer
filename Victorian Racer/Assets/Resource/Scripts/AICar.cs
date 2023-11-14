@@ -20,14 +20,15 @@ public class AICar : MonoBehaviour
     private structAI ai;
 
     private GameObject playerPosition;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject pitchforkPrefab;
+    //[SerializeField] private Transform firePoint;
+    //[SerializeField] private GameObject pitchforkPrefab;
 
+    //[SerializeField] private float bulletforce = 5;
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
 
-        ai.checkpoints = GameObject.FindWithTag("Checkpoints").transform;
+        ai.checkpoints = GameObject.FindWithTag("AICheckpoints").transform;
         ai.idx = 0;
 
         playerPosition = GameObject.FindGameObjectWithTag("Player");
@@ -44,7 +45,7 @@ public class AICar : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("AICheckpoint") == true)
+        if (other.CompareTag("AICheckpointTriggers") == true)
         {
             ai.idx = CalcNextCheckpoint();
         }
@@ -65,8 +66,11 @@ public class AICar : MonoBehaviour
         return System.Convert.ToInt32(System.Text.RegularExpressions.Regex.Replace(s1, "[^0-9]", ""));
     }
 
-    private void AttackPlayer()
-    {
+    //private void AttackPlayer()
+    //{
+    //  GameObject enemyBullet = Instantiate(pitchforkPrefab, firePoint.position, firePoint.rotation);
+    //    Rigidbody rb = enemyBullet.GetComponent<Rigidbody>();
+    //    rb.AddForce(firePoint.up * bulletforce, ForceMode.Impulse);
 
-    }
+    //}
 }
