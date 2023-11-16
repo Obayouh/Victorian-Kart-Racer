@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class Pitchfork : MonoBehaviour
 {
-    [SerializeField] private float travelSpeed;
+    [SerializeField, Range(0.25f, 4f)] private float waitDelay = 0.5f;
 
-    private void Start()
+    public void Shoot()
     {
-        Invoke("DestroyBullet", 4f);
-    }
-
-    void Update()
-    {
-        transform.Translate(0, travelSpeed * Time.deltaTime, 0);
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (this.transform.localPosition.y < 0f)
         {
-            DestroyBullet();
+            StartCoroutine(_Shoot());
         }
     }
 
-    private void DestroyBullet()
+    IEnumerator _Shoot()
     {
-        Destroy(gameObject);
+        yield return new WaitForSeconds(waitDelay);
+
+        this.transform.localPosition += (Vector3.up * 1f);
+    }
+
+    public void Retract()
+    {
+        if (this.transform.localPosition.y > 0f)
+        {
+            StartCoroutine(_Retract());
+        }
+    }
+
+    IEnumerator _Retract()
+    {
+        yield return new WaitForSeconds(waitDelay);
+
+        this.transform.localPosition -= (Vector3.up * 1f);
     }
 }
