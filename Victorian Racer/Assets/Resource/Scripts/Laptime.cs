@@ -23,11 +23,19 @@ public class Laptime : MonoBehaviour
         isRunning = true;
     }
 
+    public void StopTimer()
+    {
+        isRunning = false;
+    }
+
+    public float GetElapsedTime()
+    {
+        return elapsedTime;
+    }
 
     public void ResetTimer()
     {
         elapsedTime = 0f;
-        UpdateTimerUI();
     }
 
     private void UpdateTimerUI()
@@ -38,5 +46,4 @@ public class Laptime : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
-
 }
