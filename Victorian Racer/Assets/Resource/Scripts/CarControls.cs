@@ -6,7 +6,7 @@ using UnityEngine;
 public class CarControls : MonoBehaviour
 {
     public Wheel[] wheels;
-    public bool ShootFireBall = false;
+
 
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
@@ -63,14 +63,9 @@ public class CarControls : MonoBehaviour
         //    }
         //}
 
-        if (m_Angle == 1 || m_Angle == -1)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             TurnCar();
-        }
-
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            ShootFireBall = true;
         }
     }
 
@@ -88,7 +83,6 @@ public class CarControls : MonoBehaviour
         {
             carRB.velocity = Vector3.ClampMagnitude(carRB.velocity, _CurrentMaxMagnitude);
         }
-
     }
 
     public void TurnCar()
