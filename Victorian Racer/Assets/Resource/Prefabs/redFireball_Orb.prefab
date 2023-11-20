@@ -14514,7 +14514,7 @@ GameObject:
   - component: {fileID: 7302228368499211295}
   - component: {fileID: 3814764866394603512}
   m_Layer: 0
-  m_Name: Fireball_Orb
+  m_Name: redFireball_Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
