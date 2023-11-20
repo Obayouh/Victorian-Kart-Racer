@@ -7,26 +7,31 @@ public class CarControls : MonoBehaviour
 {
     public Wheel[] wheels;
 
-
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
     [SerializeField] private float Turnspeed;
-
-    private float m_Forward;
-    private float m_Angle;
-    private float m_Brake;
-
-    private Rigidbody carRB;
 
     //Max overall speed to avoid becoming too fast for the track
     [SerializeField] private float _NormalMaxMagnitude;
     [SerializeField] private float _CurrentMaxMagnitude;
 
+    [SerializeField, Range(3f, 15f)] private float speedboostDuration = 5f;
+    [SerializeField, Range(3f, 15f)] private float speedboostAmount = 5f;
+    [SerializeField] private float speedboostCooldown = 10f;
+
     //Enables Tire Marks to appear under the tires and what the minimum overall speed needs to be before the marks are able to appear
     //[SerializeField] private TrailRenderer[] trails;
     //[SerializeField] private float minSpeedForMarks = 10f;
 
-    [SerializeField] private float downForce = 1f;
+    private float m_Forward;
+    private float m_Angle;
+    private float m_Brake;
+
+    private float downForce = 1f;
+
+    private Rigidbody carRB;
+
+    Coroutine currentCoroutine = null;
 
     void Start()
     {
@@ -67,6 +72,14 @@ public class CarControls : MonoBehaviour
         {
             TurnCar();
         }
+
+        if (currentCoroutine == null)
+        {
+            if (Input.GetKey(KeyCode.F))
+            {
+                StartCoroutine(TempSpeedboost());
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -90,5 +103,35 @@ public class CarControls : MonoBehaviour
         float turnDriftVelocity = Vector3.Dot(transform.forward, (carRB.position + carRB.velocity - carRB.position).normalized);
         float turnDrift = m_Angle * Turnspeed * Time.deltaTime * turnDriftVelocity;
         transform.Rotate(0, turnDrift, 0, Space.World);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Fireball"))
+        {
+            StartCoroutine(TemporarySlowdown(1f, 10f));
+        }
+    }
+
+    IEnumerator TemporarySlowdown(float waitTime, float speedDecrease)
+    {
+        _CurrentMaxMagnitude = _NormalMaxMagnitude - speedDecrease;
+
+        yield return new WaitForSeconds(waitTime);
+
+        _CurrentMaxMagnitude = _NormalMaxMagnitude;
+    }
+
+    IEnumerator TempSpeedboost()
+    {
+        _CurrentMaxMagnitude += speedboostAmount;
+
+        yield return new WaitForSeconds(speedboostDuration);
+
+        _CurrentMaxMagnitude = _NormalMaxMagnitude;
+
+        currentCoroutine = null;
+
     }
 }

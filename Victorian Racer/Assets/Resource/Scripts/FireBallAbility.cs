@@ -4,39 +4,43 @@ using UnityEngine;
 
 public class FireBallAbility : MonoBehaviour
 {
-    [SerializeField] private GameObject _FireBallPrefab;
+    private GameObject _FireBallPrefab;
     [SerializeField] private Transform _SpawnpointFireBall;
 
-    private bool ShootFireBall = false;
+    private bool canShoot = false;
 
-    private CarControls _carControls;
-    private float _AbilityCooldownTime = 5;
-    private float _FireBallTimer = 5;
+    [SerializeField, Range(1f, 10f)] private float _ShootCooldownTime = 5f;
+    private float _FireBallTimer;
 
     private void Start()
     {
-        _carControls = GetComponent<CarControls>();
+        _FireBallPrefab = Resources.Load<GameObject>("Prefabs/Fireball");
     }
 
     void Update()
     {
-        if (_FireBallTimer <= 0)
+        _FireBallTimer += Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            if (ShootFireBall == true)
+            ShootFireball();
+        }
+    }
+
+    private void ShootFireball()
+    {
+        if (_FireBallTimer >= _ShootCooldownTime)
+        {
+            canShoot = true;
+            if (_FireBallTimer >= _ShootCooldownTime && canShoot == true)
             {
                 Instantiate(_FireBallPrefab, _SpawnpointFireBall.position, _SpawnpointFireBall.rotation);
-                ShootFireBall = false;
-                _FireBallTimer = _AbilityCooldownTime;
             }
         }
-        else if (ShootFireBall == true && _FireBallTimer >= 0)
-        {
-            ShootFireBall = false;
-        }
-        else
-        {
-            _FireBallTimer -= Time.deltaTime;
-            //Debug.Log(_FireBallTimer);
-        }
+        _FireBallTimer = 0f;
+        canShoot = false;
     }
 }

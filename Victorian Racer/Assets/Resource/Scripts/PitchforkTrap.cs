@@ -32,7 +32,7 @@ public class PitchforkTrap : MonoBehaviour
 
     IEnumerator _TriggerPitchforks()
     {
-        Debug.Log("spikes triggered!");
+        //Debug.Log("spikes triggered!");
 
         foreach (Pitchfork pf in ListPitchforks)
         {

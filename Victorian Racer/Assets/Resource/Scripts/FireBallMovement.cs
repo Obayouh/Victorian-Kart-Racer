@@ -19,17 +19,10 @@ public class FireBallMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            //spin out enemy
-            Destroy(this.gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Pitchfork") || collision.gameObject.CompareTag("Tomato"))
-        {
-            Destroy(collision.gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {        
             Destroy(this.gameObject);
         }
     }
