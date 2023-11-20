@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Laptime : MonoBehaviour
 {
     public Text timerText;
-    private float elapsedTime;
+    public float elapsedTime;
     private bool isRunning = false;
 
     private void Update()
