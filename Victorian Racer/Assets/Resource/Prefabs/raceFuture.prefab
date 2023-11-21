@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPowered: 0
-  CanTurn: 0
+  CanTurn: 1
   flipWheel: 1
   Visual: {fileID: 5364398260635744371}
 --- !u!146 &3720400700495321025
