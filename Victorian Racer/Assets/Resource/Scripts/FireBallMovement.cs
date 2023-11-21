@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class FireBallMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField, Range(2f, 50f)] private float _moveSpeed = 2f;
 
-    private float _firetimer = 5;
+    private float destroyTimer = 5f;
 
     void Update()
     {
         transform.Translate(_moveSpeed * Time.deltaTime * Vector3.forward);
 
-        _firetimer -= Time.deltaTime;
-        if (_firetimer <= 0)
+        if (destroyTimer <= 0)
         {
-            Destroy(this.gameObject);
+            Invoke("DestroyFireball", destroyTimer);
         }
     }
 
@@ -23,7 +22,12 @@ public class FireBallMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {        
-            Destroy(this.gameObject);
+            DestroyFireball();
         }
+    }
+
+    private void DestroyFireball()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -755,6 +755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23aa129b0d4b39b428cf4fb25a4d8ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FireBallPrefab: {fileID: 8446814529420664474, guid: 05dc138f82f2e9f42b5b00d0607ecb68,
+    type: 3}
   _SpawnpointFireBall: {fileID: 815058980}
   _ShootCooldownTime: 5
 --- !u!1001 &1992249093485334091
