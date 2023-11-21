@@ -7,6 +7,8 @@ public class CarControls : MonoBehaviour
 {
     public Wheel[] wheels;
 
+    private CamControl camControl;
+
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
     [SerializeField] private float Turnspeed;
@@ -38,6 +40,8 @@ public class CarControls : MonoBehaviour
         carRB = GetComponent<Rigidbody>();
 
         carRB.centerOfMass -= new Vector3(0f, 0.7f, 0f);
+
+        camControl = FindObjectOfType<CamControl>();
 
         carRB.AddForce(-transform.up * downForce);
 
@@ -77,7 +81,7 @@ public class CarControls : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.F))
             {
-                StartCoroutine(TempSpeedboost());
+                currentCoroutine = StartCoroutine(TempSpeedboost());
             }
         }
     }
@@ -127,9 +131,13 @@ public class CarControls : MonoBehaviour
     {
         _CurrentMaxMagnitude += speedboostAmount;
 
+        camControl._CurrentDistance += 3f; 
+
         yield return new WaitForSeconds(speedboostDuration);
 
         _CurrentMaxMagnitude = _NormalMaxMagnitude;
+
+        camControl._CurrentDistance -= 3f;
 
         currentCoroutine = null;
 

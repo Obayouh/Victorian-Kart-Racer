@@ -6,7 +6,8 @@ public class CamControl : MonoBehaviour
 {
     [SerializeField] private Transform _player;
 
-    [SerializeField, Range(1f, 20f)] private float _distance = 5f; //Distance between _Player and camera
+    [HideInInspector] public float _CurrentDistance;
+    [SerializeField, Range(1f, 20f)] private float _NormalDistance = 5f; //Distance between _Player and camera
     [SerializeField, Min(0f)] private float _FocusRadius = 1f; //When the cam and _Player are over this amount the camera adjusts
     [SerializeField, Range(0f, 1f)] private float _FocusCentering = 0.5f; //Camera moves back to perfect center with some smoothing
     [SerializeField, Range(1f, 360f)] private float _RotationSpeed = 90f; //How fast the cam turns to catch up to the _Player's pos
@@ -24,6 +25,10 @@ public class CamControl : MonoBehaviour
     {
         _focusPoint = _player.position;
         transform.localRotation = Quaternion.Euler(_orbitAngles);
+    }
+    private void Start()
+    {
+        _CurrentDistance = _NormalDistance;
     }
     private void Update()
     {
@@ -45,7 +50,7 @@ public class CamControl : MonoBehaviour
             lookRotation = transform.localRotation;
         }
         Vector3 lookDirection = lookRotation * Vector3.forward;
-        Vector3 lookPosition = _focusPoint - lookDirection * _distance;
+        Vector3 lookPosition = _focusPoint - lookDirection * _CurrentDistance;
         transform.SetPositionAndRotation(lookPosition, lookRotation);
     }
 
