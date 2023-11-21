@@ -6,8 +6,17 @@ using UnityEngine;
 public class CarControls : MonoBehaviour
 {
     public Wheel[] wheels;
+    public Wheel[] DriftWheels;
+    
+    //make 2 empty elements in unity, so dont drag anything into it
+    public Wheel[] _originalBackWeels;
 
     private CamControl camControl;
+
+    [SerializeField] private GameObject _wheelBackLeft;
+    [SerializeField] private GameObject _wheelBackRight;
+    [SerializeField] private GameObject _driftBackLeft;
+    [SerializeField] private GameObject _driftBackRight;
 
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
@@ -31,6 +40,9 @@ public class CarControls : MonoBehaviour
 
     private float downForce = 1f;
 
+    private float _originalPower;
+    private float _driftPower;
+
     private Rigidbody carRB;
 
     Coroutine currentCoroutine = null;
@@ -46,15 +58,23 @@ public class CarControls : MonoBehaviour
         carRB.AddForce(-transform.up * downForce);
 
         _CurrentMaxMagnitude = _NormalMaxMagnitude;
+
+        _originalBackWeels[0] = wheels[0];
+        _originalBackWeels[1] = wheels[1];
+        _driftBackLeft.SetActive(false);
+        _driftBackRight.SetActive(false);
+
+        _originalPower = Power;
+        _driftPower = Power - 250;
     }
 
     void Update()
     {
         m_Forward = Input.GetAxis("Vertical");
-        if (m_Forward == 0)
-        {
-            m_Brake = Input.GetAxis("Vertical");
-        }
+        //if (m_Forward == 0)
+        //{
+        //    m_Brake = Input.GetAxis("Vertical");
+        //}
         m_Angle = Input.GetAxis("Horizontal");
 
         //if (m_Angle != 0 && carRB.velocity.magnitude > minSpeedForMarks)
@@ -74,7 +94,30 @@ public class CarControls : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            TurnCar();
+            //TurnCar();
+
+            _driftBackLeft.SetActive(true);
+            _driftBackRight.SetActive(true);
+            _wheelBackLeft.SetActive(false);
+            _wheelBackRight.SetActive(false);
+
+            Power = _driftPower; 
+
+            wheels[0] = DriftWheels[0];
+            wheels[1] = DriftWheels[1];
+        }
+        
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _driftBackLeft.SetActive(false);
+            _driftBackRight.SetActive(false);
+            _wheelBackLeft.SetActive(true);
+            _wheelBackRight.SetActive(true);
+
+            Power = _originalPower;
+
+            wheels[0] = _originalBackWeels[0];
+            wheels[1] = _originalBackWeels[1];
         }
 
         if (currentCoroutine == null)
@@ -91,7 +134,7 @@ public class CarControls : MonoBehaviour
         foreach (Wheel _wheel in wheels)
         {
             _wheel.Accelerate(m_Forward * Power);
-            _wheel.Brake(m_Brake * Power);
+            //_wheel.Brake(m_Brake * Power);
             _wheel.Turn(m_Angle * MaxAngle);
         }
 
@@ -102,12 +145,12 @@ public class CarControls : MonoBehaviour
         }
     }
 
-    public void TurnCar()
-    {
-        float turnDriftVelocity = Vector3.Dot(transform.forward, (carRB.position + carRB.velocity - carRB.position).normalized);
-        float turnDrift = m_Angle * Turnspeed * Time.deltaTime * turnDriftVelocity;
-        transform.Rotate(0, turnDrift, 0, Space.World);
-    }
+    //public void TurnCar()
+    //{
+    //    float turnDriftVelocity = Vector3.Dot(transform.forward, (carRB.position + carRB.velocity - carRB.position).normalized);
+    //    float turnDrift = m_Angle * Turnspeed * Time.deltaTime * turnDriftVelocity;
+    //    transform.Rotate(0, turnDrift, 0, Space.World);
+    //}
 
 
     private void OnTriggerEnter(Collider other)
