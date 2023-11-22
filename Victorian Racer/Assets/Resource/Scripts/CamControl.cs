@@ -19,7 +19,7 @@ public class CamControl : MonoBehaviour
 
     private Vector3 _focusPoint, _previousFocusPoint;
     private Vector3 _prevMousePos;
-    private Vector2 _orbitAngles = new(30f, 0f);
+    private Vector2 _orbitAngles = new(25f, 93f);
 
     private void Awake()
     {

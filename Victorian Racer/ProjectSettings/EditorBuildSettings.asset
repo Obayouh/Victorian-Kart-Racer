@@ -10,5 +10,5 @@ EditorBuildSettings:
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainGameScenes/MainRace.unity
-    guid: 4d01cea36a276b448a001de4d3b87287
+    guid: f83a07427f66c394fb4c72c170d3bd0c
   m_configObjects: {}

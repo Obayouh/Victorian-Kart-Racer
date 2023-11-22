@@ -61,8 +61,11 @@ public class CarControls : MonoBehaviour
 
         _originalBackWeels[0] = wheels[0];
         _originalBackWeels[1] = wheels[1];
+
         _driftBackLeft.SetActive(false);
         _driftBackRight.SetActive(false);
+        _wheelBackLeft.SetActive(true);
+        _wheelBackRight.SetActive(true);
 
         _originalPower = Power;
         _driftPower = Power - 250;
@@ -71,10 +74,10 @@ public class CarControls : MonoBehaviour
     void Update()
     {
         m_Forward = Input.GetAxis("Vertical");
-        //if (m_Forward == 0)
-        //{
-        //    m_Brake = Input.GetAxis("Vertical");
-        //}
+        if (m_Forward == 0)
+        {
+            m_Brake = Input.GetAxis("Vertical");
+        }
         m_Angle = Input.GetAxis("Horizontal");
 
         //if (m_Angle != 0 && carRB.velocity.magnitude > minSpeedForMarks)
@@ -101,7 +104,7 @@ public class CarControls : MonoBehaviour
             _wheelBackLeft.SetActive(false);
             _wheelBackRight.SetActive(false);
 
-            Power = _driftPower; 
+            Power = _driftPower;
 
             wheels[0] = DriftWheels[0];
             wheels[1] = DriftWheels[1];
