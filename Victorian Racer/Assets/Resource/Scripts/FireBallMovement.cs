@@ -8,16 +8,18 @@ public class FireBallMovement : MonoBehaviour
 
     private float destroyTimer = 5f;
 
+    Rigidbody rb;
+
     private void Start()
     {
         Invoke("DestroyFireball", destroyTimer);
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-
-        transform.Translate(_moveSpeed * Time.deltaTime * Vector3.forward);
-
+        rb.AddForce(0, 0, _moveSpeed, ForceMode.Force);
     }
 
     private void OnTriggerEnter(Collider other)
