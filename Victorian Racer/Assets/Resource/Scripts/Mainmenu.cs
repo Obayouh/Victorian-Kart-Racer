@@ -16,6 +16,7 @@ public class Mainmenu : MonoBehaviour
 
     public void Quit()
     {
+        PlayerPrefs.Save();
         Application.Quit();
         Debug.Log("quit");
     }

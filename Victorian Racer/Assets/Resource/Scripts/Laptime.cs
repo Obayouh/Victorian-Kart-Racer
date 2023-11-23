@@ -8,6 +8,7 @@ public class Laptime : MonoBehaviour
     public Text timerText;
     public float elapsedTime;
     private bool isRunning = false;
+    private GameManager gameManagerScript; // Add this field
 
     private void Update()
     {
@@ -36,6 +37,7 @@ public class Laptime : MonoBehaviour
     public void ResetTimer()
     {
         elapsedTime = 0f;
+        UpdateTimerUI();
     }
 
     private void UpdateTimerUI()
@@ -45,5 +47,10 @@ public class Laptime : MonoBehaviour
         int seconds = (int)(elapsedTime % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+    }
+
+    public void SetGameManager(GameManager manager)
+    {
+        gameManagerScript = manager;
     }
 }

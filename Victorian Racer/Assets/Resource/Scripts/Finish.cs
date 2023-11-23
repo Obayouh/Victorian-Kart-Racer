@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 public class Finish : MonoBehaviour
 {
-    public int totalLaps = 3; 
+    public int totalLaps = 3;
     public Text lapTimeText;
     public Text endRaceText;
-    public float restartDelay = 3f;
-    public float cooldownTime = 15f; 
+    public GameManager gameManager; // Reference to GameManager
     public Laptime lapTimeScript;
 
     private int currentLap = 0;
@@ -22,6 +21,16 @@ public class Finish : MonoBehaviour
     void Start()
     {
         lapTimeText.text = "Lap: 0 / " + totalLaps;
+        FindGameManager(); // Find GameManager at the start
+    }
+
+    void FindGameManager()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,12 +51,14 @@ public class Finish : MonoBehaviour
                 {
                     raceFinished = true;
                     endRaceText.text = "Race Finished!\nTotal Time: " + FormatTime(totalRaceTime);
-                    Invoke("RestartGame", restartDelay);
+                    gameManager.SaveLapTime(totalRaceTime); // Use GameManager to save lap time
+                    Invoke("LoadMainMenu", 3f); // Load main menu after a delay
+                    Debug.Log(totalRaceTime);
                 }
 
                 canTriggerFinish = false;
                 lastFinishTime = Time.time;
-                Invoke("ResetCooldown", cooldownTime);
+                Invoke("ResetCooldown", 15f); // Reset cooldown after 15 seconds
             }
         }
     }
@@ -57,14 +68,9 @@ public class Finish : MonoBehaviour
         canTriggerFinish = true;
     }
 
-    void RestartGame()
+    void LoadMainMenu()
     {
-        currentLap = 0;
-        raceFinished = false;
-        totalRaceTime = 0f;
-        lapTimeText.text = "Lap: 0 / " + totalLaps;
-        endRaceText.text = "";
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("main menu");
     }
 
     string FormatTime(float time)
