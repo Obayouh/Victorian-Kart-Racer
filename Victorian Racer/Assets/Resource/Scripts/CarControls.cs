@@ -6,17 +6,14 @@ using UnityEngine;
 public class CarControls : MonoBehaviour
 {
     public Wheel[] wheels;
-    public Wheel[] DriftWheels;
-    
-    //make 2 empty elements in unity, so dont drag anything into it
-    public Wheel[] _originalBackWeels;
+    public WheelCollider[] wheelColliders;
 
     private CamControl camControl;
 
-    [SerializeField] private GameObject _wheelBackLeft;
-    [SerializeField] private GameObject _wheelBackRight;
-    [SerializeField] private GameObject _driftBackLeft;
-    [SerializeField] private GameObject _driftBackRight;
+    private WheelFrictionCurve _normalForwardFriction;
+    private WheelFrictionCurve _normalSidewaysFriction;
+    private WheelFrictionCurve _driftForwardFriction;
+    private WheelFrictionCurve _driftSidewaysFriction;
 
     [SerializeField] private float Power;
     [SerializeField] private float MaxAngle;
@@ -40,9 +37,6 @@ public class CarControls : MonoBehaviour
 
     private float downForce = 1f;
 
-    private float _originalPower;
-    private float _driftPower;
-
     private Rigidbody carRB;
 
     Coroutine currentCoroutine = null;
@@ -58,17 +52,6 @@ public class CarControls : MonoBehaviour
         carRB.AddForce(-transform.up * downForce);
 
         _CurrentMaxMagnitude = _NormalMaxMagnitude;
-
-        _originalBackWeels[0] = wheels[0];
-        _originalBackWeels[1] = wheels[1];
-
-        _driftBackLeft.SetActive(false);
-        _driftBackRight.SetActive(false);
-        _wheelBackLeft.SetActive(true);
-        _wheelBackRight.SetActive(true);
-
-        _originalPower = Power;
-        _driftPower = Power - 250;
     }
 
     void Update()
@@ -97,30 +80,12 @@ public class CarControls : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            //TurnCar();
-
-            _driftBackLeft.SetActive(true);
-            _driftBackRight.SetActive(true);
-            _wheelBackLeft.SetActive(false);
-            _wheelBackRight.SetActive(false);
-
-            Power = _driftPower;
-
-            wheels[0] = DriftWheels[0];
-            wheels[1] = DriftWheels[1];
+            ChangeToDriftWheels();
         }
         
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _driftBackLeft.SetActive(false);
-            _driftBackRight.SetActive(false);
-            _wheelBackLeft.SetActive(true);
-            _wheelBackRight.SetActive(true);
-
-            Power = _originalPower;
-
-            wheels[0] = _originalBackWeels[0];
-            wheels[1] = _originalBackWeels[1];
+            BackToNormalWheels();
         }
 
         if (currentCoroutine == null)
@@ -148,12 +113,45 @@ public class CarControls : MonoBehaviour
         }
     }
 
-    //public void TurnCar()
-    //{
-    //    float turnDriftVelocity = Vector3.Dot(transform.forward, (carRB.position + carRB.velocity - carRB.position).normalized);
-    //    float turnDrift = m_Angle * Turnspeed * Time.deltaTime * turnDriftVelocity;
-    //    transform.Rotate(0, turnDrift, 0, Space.World);
-    //}
+    private void ChangeToDriftWheels()
+    {
+        _driftForwardFriction.extremumSlip = 0.3f;
+        _driftForwardFriction.extremumValue = 1f;
+        _driftForwardFriction.asymptoteSlip = 0.25f;
+        _driftForwardFriction.asymptoteValue = 0.05f;
+        _driftForwardFriction.stiffness = 1f;
+
+        _driftSidewaysFriction.extremumSlip = 0.6f;
+        _driftSidewaysFriction.extremumValue = 1f;
+        _driftSidewaysFriction.asymptoteSlip = 0.9f;
+        _driftSidewaysFriction.asymptoteValue = 0.7f;
+        _driftSidewaysFriction.stiffness = 0.95f;
+
+        wheelColliders[0].forwardFriction = _driftForwardFriction;
+        wheelColliders[1].forwardFriction = _driftForwardFriction;
+        wheelColliders[0].sidewaysFriction = _driftSidewaysFriction;
+        wheelColliders[1].sidewaysFriction = _driftSidewaysFriction;
+    }
+
+    private void BackToNormalWheels()
+    {
+        _normalForwardFriction.extremumSlip = 0.4f;
+        _normalForwardFriction.extremumValue = 1f;
+        _normalForwardFriction.asymptoteSlip = 0.8f;
+        _normalForwardFriction.asymptoteValue = 0.5f;
+        _normalForwardFriction.stiffness = 1f;
+
+        _normalSidewaysFriction.extremumSlip = 0.3f;
+        _normalSidewaysFriction.extremumValue = 1f;
+        _normalSidewaysFriction.asymptoteSlip = 0.05f;
+        _normalSidewaysFriction.asymptoteValue = 0.75f;
+        _normalSidewaysFriction.stiffness = 1f;
+
+        wheelColliders[0].forwardFriction = _normalForwardFriction;
+        wheelColliders[1].forwardFriction = _normalForwardFriction;
+        wheelColliders[0].sidewaysFriction = _normalSidewaysFriction;
+        wheelColliders[1].sidewaysFriction = _normalSidewaysFriction;
+    }
 
 
     private void OnTriggerEnter(Collider other)
