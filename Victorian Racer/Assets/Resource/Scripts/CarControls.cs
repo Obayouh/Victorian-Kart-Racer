@@ -141,7 +141,7 @@ public class CarControls : MonoBehaviour
         _normalForwardFriction.asymptoteValue = 0.5f;
         _normalForwardFriction.stiffness = 1f;
 
-        _normalSidewaysFriction.extremumSlip = 0.3f;
+        _normalSidewaysFriction.extremumSlip = 0.2f;
         _normalSidewaysFriction.extremumValue = 1f;
         _normalSidewaysFriction.asymptoteSlip = 0.05f;
         _normalSidewaysFriction.asymptoteValue = 0.75f;

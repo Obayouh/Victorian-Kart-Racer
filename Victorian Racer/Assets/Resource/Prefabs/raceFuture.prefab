@@ -76,7 +76,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
+    m_AsymptoteSlip: 0.05
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
@@ -264,7 +264,9 @@ MonoBehaviour:
   - {fileID: 5749867107647995449}
   - {fileID: 2626210560824722791}
   - {fileID: 1292021384477963496}
-  wheelColliders: []
+  wheelColliders:
+  - {fileID: 5195019357239234560}
+  - {fileID: 8679766937131321323}
   Power: 750
   MaxAngle: 50
   Turnspeed: 120
@@ -410,7 +412,7 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.05
     m_AsymptoteValue: 0.75
@@ -620,7 +622,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
+    m_AsymptoteSlip: 0.05
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
@@ -706,7 +708,7 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.3
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.05
     m_AsymptoteValue: 0.75
