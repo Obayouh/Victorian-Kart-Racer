@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         if (topTimesText != null)
         {
-            string topTimesString = "Top Times:\n";
+            string topTimesString = "\n";
 
             for (int i = 0; i < topTimes.Count; i++)
             {
