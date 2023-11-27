@@ -1,36 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class CamRotation : MonoBehaviour
 {
+    private Cinemachine.CinemachineVirtualCamera vCam;
 
-    private Transform camTransform;
+    [SerializeField] private Transform camLookAt;
 
-    private Vector3 startCamRotation;
-    private Vector3 endCamRotation;
+    //private float duration;
     void Start()
     {
-        camTransform = GetComponent<Transform>();
+        vCam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        vCam.LookAt = camLookAt;
 
-        //transform.position = startCamRotation;
     }
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    IEnumerator CamPanDown()
-    {
-        endCamRotation = new Vector3(90f,startCamRotation.y,startCamRotation.z);
-        Vector3.Slerp(startCamRotation, endCamRotation, 4);
-        yield return null;
-    }
-
-    IEnumerator CamPanUp() 
-    {
-        yield return new WaitForSeconds(1f);
-
+        if (other.gameObject.name == "CamTrigger")
+        {
+            vCam.LookAt = null;
+        }
     }
 }
