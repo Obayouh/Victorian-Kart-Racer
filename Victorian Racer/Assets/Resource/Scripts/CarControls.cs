@@ -30,6 +30,8 @@ public class CarControls : MonoBehaviour
     [SerializeField] private AudioSource _carDriveSFX;
     [SerializeField] private AudioSource _driftSFX;
 
+    [SerializeField] private GameObject _smokeScreen;
+
     //Enables Tire Marks to appear under the tires and what the minimum overall speed needs to be before the marks are able to appear
     //[SerializeField] private TrailRenderer[] trails;
     //[SerializeField] private float minSpeedForMarks = 10f;
@@ -163,17 +165,19 @@ public class CarControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fireball"))
         {
-            StartCoroutine(TemporarySlowdown(1f, 10f));
+            StartCoroutine(TemporarySlowdown(Random.Range(1.5f,3f), 10f));
         }
     }
 
     IEnumerator TemporarySlowdown(float waitTime, float speedDecrease)
     {
+        _smokeScreen.SetActive(true);
         _CurrentMaxMagnitude = _NormalMaxMagnitude - speedDecrease;
 
         yield return new WaitForSeconds(waitTime);
 
         _CurrentMaxMagnitude = _NormalMaxMagnitude;
+        _smokeScreen.SetActive(false);
     }
 
     IEnumerator TempSpeedboost()

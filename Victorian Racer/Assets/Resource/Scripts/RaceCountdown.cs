@@ -16,6 +16,7 @@ public class RaceCountdown : MonoBehaviour
         //Freeze player/environment
         SetStatic(player, true);
         GetComponent<CarControls>().enabled = false;
+        countdownText.enabled = false;
     }
 
     void SetStatic(Transform obj, bool isStatic) //pakt transform van het object en een bool of hij op static staat
@@ -40,6 +41,8 @@ public class RaceCountdown : MonoBehaviour
 
     private IEnumerator Countdown(int seconds)
     {
+        countdownText.enabled = true;
+
         int count = seconds;
 
         while (count > 0)
