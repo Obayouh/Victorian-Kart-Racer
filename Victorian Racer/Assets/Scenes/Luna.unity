@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6b63978979538e943ab48a26540dc0f3, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18261397, g: 0.22832419, b: 0.30716324, a: 1}
+  m_IndirectSpecularColor: {r: 0.08412041, g: 0.016213952, b: 0.21518084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 7e29ef85c906a9b488db741add751be2,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -135,71 +136,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FogVolume (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.rotation3D
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startSizeY.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startSizeZ.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.817
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.817
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649204013365141420, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.817
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373567615874169722, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373567615874169722, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373567615874169722, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084871143862259195, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084871143862259195, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084871143862259195, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8084871143862259195, guid: 721eaa761ff56ea499f8ffc2d67fdc63,
         type: 3}
