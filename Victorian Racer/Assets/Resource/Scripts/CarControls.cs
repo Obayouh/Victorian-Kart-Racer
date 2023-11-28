@@ -27,6 +27,9 @@ public class CarControls : MonoBehaviour
     [SerializeField, Range(3f, 15f)] private float speedboostAmount = 5f;
     [SerializeField] private float speedboostCooldown = 10f;
 
+    [SerializeField] private AudioSource _carDriveSFX;
+    [SerializeField] private AudioSource _driftSFX;
+
     //Enables Tire Marks to appear under the tires and what the minimum overall speed needs to be before the marks are able to appear
     //[SerializeField] private TrailRenderer[] trails;
     //[SerializeField] private float minSpeedForMarks = 10f;
@@ -43,6 +46,8 @@ public class CarControls : MonoBehaviour
 
     void Start()
     {
+        _carDriveSFX.Play();
+
         carRB = GetComponent<Rigidbody>();
 
         carRB.centerOfMass -= new Vector3(0f, 0.7f, 0f);
@@ -80,10 +85,10 @@ public class CarControls : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            _driftSFX.Play();
             ChangeToDriftWheels();
         }
-        
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             BackToNormalWheels();
         }
@@ -121,7 +126,7 @@ public class CarControls : MonoBehaviour
         _driftForwardFriction.asymptoteValue = 0.05f;
         _driftForwardFriction.stiffness = 1f;
 
-        _driftSidewaysFriction.extremumSlip = 0.6f;
+        _driftSidewaysFriction.extremumSlip = 0.7f;
         _driftSidewaysFriction.extremumValue = 1f;
         _driftSidewaysFriction.asymptoteSlip = 0.9f;
         _driftSidewaysFriction.asymptoteValue = 0.7f;

@@ -6,6 +6,7 @@ public class FireBallAbility : MonoBehaviour
 {
     [SerializeField] private GameObject _FireBallPrefab;
     [SerializeField] private Transform _SpawnpointFireBall;
+    [SerializeField] private AudioSource _fireWooshSFX;
 
     private bool canShoot = false;
 
@@ -23,6 +24,7 @@ public class FireBallAbility : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _fireWooshSFX.Play();
             ShootFireball();
         }
     }
