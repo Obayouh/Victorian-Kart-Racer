@@ -8,6 +8,9 @@ public class RaceCountdown : MonoBehaviour
     [SerializeField] private Text countdownText;
     [SerializeField] private Transform player;
     [SerializeField] private Laptime lapTimer;
+    [SerializeField] private GameObject continueMessage;
+
+    [SerializeField] private AudioSource _carStartSFX;
 
     private bool startGame = true;
 
@@ -34,6 +37,8 @@ public class RaceCountdown : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.I) && startGame == true)
         {
+            continueMessage.SetActive(false);
+            _carStartSFX.Play();
             StartCoroutine(Countdown(3));
             startGame = false;
         }
