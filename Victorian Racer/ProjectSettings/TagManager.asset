@@ -10,6 +10,8 @@ TagManager:
   - AICheckpointTriggers
   - Fireball
   - Checkpoint
+  - PathTriggerLeft
+  - PathTriggerRight
   layers:
   - Default
   - TransparentFX
