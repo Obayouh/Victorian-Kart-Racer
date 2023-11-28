@@ -9,11 +9,12 @@ public class RaceCountdown : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Laptime lapTimer;
 
+    private bool startGame = true;
+
     private void Start()
     {
         //Freeze player/environment
         SetStatic(player, true);
-        StartCoroutine(Countdown(3));
         GetComponent<CarControls>().enabled = false;
     }
 
@@ -25,6 +26,15 @@ public class RaceCountdown : MonoBehaviour
         foreach (Transform child in obj)
         {
             SetStatic(child, isStatic);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.I) && startGame == true)
+        {
+            StartCoroutine(Countdown(3));
+            startGame = false;
         }
     }
 
