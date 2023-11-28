@@ -63,5 +63,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _OcclusionStrength: 1
+    - _Smoothness: 0.368
     m_Colors: []
   m_BuildTextureStacks: []
