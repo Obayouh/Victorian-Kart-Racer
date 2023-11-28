@@ -12,6 +12,8 @@ TagManager:
   - Checkpoint
   - PathTriggerLeft
   - PathTriggerRight
+  - ChurchBell
+  - GraveyardBGM
   layers:
   - Default
   - TransparentFX

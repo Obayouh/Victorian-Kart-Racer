@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RespawnCheckpoints : MonoBehaviour
 {
+    [SerializeField] private AudioSource _bellSFX;
+    [SerializeField] private AudioSource _graveyardBGM;
+
     private Rigidbody rb;
     private Vector3 _posCheckpoint;
     private Quaternion _rotCheckpoint;
@@ -29,6 +32,25 @@ public class RespawnCheckpoints : MonoBehaviour
         {
             _posCheckpoint = new Vector3(other.transform.position.x, other.transform.position.y - 1.25f, other.transform.position.z);
             _rotCheckpoint = other.transform.rotation;
+        }
+
+        if (other.gameObject.CompareTag("ChurchBell"))
+        {
+            _bellSFX.time = 25.1f;
+            _bellSFX.Play();
+        }
+
+        if (other.gameObject.CompareTag("GraveyardBGM"))
+        {
+            _graveyardBGM.Play();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("GraveyardBGM"))
+        {
+            _graveyardBGM.Stop();
         }
     }
 }
