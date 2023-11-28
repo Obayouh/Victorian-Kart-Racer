@@ -292,6 +292,7 @@ MonoBehaviour:
   _carDriveSFX: {fileID: 4519815511717671146}
   _driftSFX: {fileID: 5225623315366420730}
   _BGM: {fileID: 3735854379497057254}
+  _smokeScreen: {fileID: 0}
 --- !u!54 &7065472983824046962
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -355,6 +356,8 @@ MonoBehaviour:
   countdownText: {fileID: 0}
   player: {fileID: 3363683563937119110}
   lapTimer: {fileID: 0}
+  continueMessage: {fileID: 0}
+  _carStartSFX: {fileID: 0}
 --- !u!114 &1945124410803906569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bellSFX: {fileID: 6533857588784614081}
+  _graveyardBGM: {fileID: 0}
 --- !u!114 &1714551284751881800
 MonoBehaviour:
   m_ObjectHideFlags: 0

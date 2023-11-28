@@ -29,6 +29,7 @@ public class CarControls : MonoBehaviour
 
     [SerializeField] private AudioSource _carDriveSFX;
     [SerializeField] private AudioSource _driftSFX;
+    [SerializeField] private AudioSource _BGM;
 
     [SerializeField] private GameObject _smokeScreen;
 
@@ -49,6 +50,7 @@ public class CarControls : MonoBehaviour
     void Start()
     {
         _carDriveSFX.Play();
+        _BGM.Play();
 
         carRB = GetComponent<Rigidbody>();
 
