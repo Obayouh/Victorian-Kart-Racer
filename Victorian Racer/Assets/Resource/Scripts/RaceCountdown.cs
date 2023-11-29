@@ -10,7 +10,9 @@ public class RaceCountdown : MonoBehaviour
     [SerializeField] private Laptime lapTimer;
     [SerializeField] private GameObject continueMessage;
 
-    [SerializeField] private AudioSource _carStartSFX;
+    [SerializeField] public AudioSource _carStartSFX;
+
+    public Image speedboostImage;
 
     private bool startGame = true;
 

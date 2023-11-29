@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8216363658367911237}
   - component: {fileID: 6723525570468830079}
   - component: {fileID: 8309732656339132944}
+  - component: {fileID: 8662137642930720897}
   m_Layer: 0
   m_Name: Cauldron_Green
   m_TagString: Untagged
@@ -84,6 +85,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8662137642930720897
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305899431234467739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4164511204261677510, guid: ff1ba162d2f7db04889fc8ac1139fdcb, type: 3}
 --- !u!1001 &5944521485857475396
 PrefabInstance:
   m_ObjectHideFlags: 0

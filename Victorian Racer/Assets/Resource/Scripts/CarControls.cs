@@ -27,9 +27,9 @@ public class CarControls : MonoBehaviour
     [SerializeField, Range(3f, 15f)] private float speedboostAmount = 5f;
     [SerializeField] private float speedboostCooldown = 10f;
 
-    [SerializeField] private AudioSource _carDriveSFX;
-    [SerializeField] private AudioSource _driftSFX;
-    [SerializeField] private AudioSource _BGM;
+    [SerializeField] public AudioSource _carDriveSFX;
+    [SerializeField] public AudioSource _driftSFX;
+    [SerializeField] public AudioSource _BGM;
 
     [SerializeField] private GameObject _smokeScreen;
 
@@ -44,6 +44,8 @@ public class CarControls : MonoBehaviour
     private float downForce = 1f;
 
     private Rigidbody carRB;
+    private RaceCountdown _raceCountdown;
+    private Laptime _laptime;
 
     Coroutine currentCoroutine = null;
 
@@ -53,6 +55,8 @@ public class CarControls : MonoBehaviour
         _BGM.Play();
 
         carRB = GetComponent<Rigidbody>();
+        _raceCountdown = FindObjectOfType<RaceCountdown>();
+        _laptime = FindObjectOfType<Laptime>();
 
         carRB.centerOfMass -= new Vector3(0f, 0.7f, 0f);
 
@@ -99,10 +103,15 @@ public class CarControls : MonoBehaviour
 
         if (currentCoroutine == null)
         {
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.Space))
             {
                 currentCoroutine = StartCoroutine(TempSpeedboost());
             }
+        }
+
+        if (_raceCountdown.speedboostImage.fillAmount != 1)
+        {
+            _raceCountdown.speedboostImage.fillAmount += 2 / speedboostCooldown * Time.deltaTime;
         }
     }
 
@@ -167,11 +176,16 @@ public class CarControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fireball"))
         {
-            StartCoroutine(TemporarySlowdown(Random.Range(1.5f,3f), 10f));
+            StartCoroutine(TemporarySlowdownFireball(Random.Range(1.5f,3f), 10f));
+        }
+
+        if (other.gameObject.CompareTag("Pitchfork"))
+        {
+            StartCoroutine(PitchforkTempSlowdown(Random.Range(1.5f, 3f), 10f));
         }
     }
 
-    IEnumerator TemporarySlowdown(float waitTime, float speedDecrease)
+    IEnumerator TemporarySlowdownFireball(float waitTime, float speedDecrease)
     {
         _smokeScreen.SetActive(true);
         _CurrentMaxMagnitude = _NormalMaxMagnitude - speedDecrease;
@@ -182,11 +196,23 @@ public class CarControls : MonoBehaviour
         _smokeScreen.SetActive(false);
     }
 
+    IEnumerator PitchforkTempSlowdown(float waitTime, float speedDecrease)
+    {
+        _laptime.elapsedTime += 2;
+        _CurrentMaxMagnitude = _NormalMaxMagnitude - speedDecrease;
+
+        yield return new WaitForSeconds(waitTime);
+
+        _CurrentMaxMagnitude = _NormalMaxMagnitude;
+    }
+
     IEnumerator TempSpeedboost()
     {
         _CurrentMaxMagnitude += speedboostAmount;
 
-        camControl._CurrentDistance += 3f; 
+        camControl._CurrentDistance += 3f;
+
+        _raceCountdown.speedboostImage.fillAmount = 0;
 
         yield return new WaitForSeconds(speedboostDuration);
 

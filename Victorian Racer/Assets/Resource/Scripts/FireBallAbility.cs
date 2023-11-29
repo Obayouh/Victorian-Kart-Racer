@@ -6,7 +6,7 @@ public class FireBallAbility : MonoBehaviour
 {
     [SerializeField] private GameObject _FireBallPrefab;
     [SerializeField] private Transform _SpawnpointFireBall;
-    [SerializeField] private AudioSource _fireWooshSFX;
+    [SerializeField] public AudioSource _fireWooshSFX;
 
     private bool canShoot = false;
 

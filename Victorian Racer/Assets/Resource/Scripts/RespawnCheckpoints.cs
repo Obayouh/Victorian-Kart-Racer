@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RespawnCheckpoints : MonoBehaviour
 {
-    [SerializeField] private AudioSource _bellSFX;
-    [SerializeField] private AudioSource _graveyardBGM;
+    [SerializeField] public AudioSource _bellSFX;
+    [SerializeField] public AudioSource _graveyardBGMLeft;
+    [SerializeField] public AudioSource _graveyardBGMRight;
 
     private Rigidbody rb;
     private Vector3 _posCheckpoint;
@@ -40,17 +41,27 @@ public class RespawnCheckpoints : MonoBehaviour
             _bellSFX.Play();
         }
 
-        if (other.gameObject.CompareTag("GraveyardBGM"))
+        if (other.gameObject.CompareTag("GraveyardBGMLeft"))
         {
-            _graveyardBGM.Play();
+            _graveyardBGMLeft.Play();
+        }
+
+        if (other.gameObject.CompareTag("GraveyardBGMRight"))
+        {
+            _graveyardBGMRight.Play();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("GraveyardBGM"))
+        if (other.gameObject.CompareTag("GraveyardBGMLeft"))
         {
-            _graveyardBGM.Stop();
+            _graveyardBGMLeft.Stop();
+        }
+
+        if (other.gameObject.CompareTag("GraveyardBGMRight"))
+        {
+            _graveyardBGMRight.Stop();
         }
     }
 }

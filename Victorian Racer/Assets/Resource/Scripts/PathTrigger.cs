@@ -13,14 +13,14 @@ public class PathTrigger : MonoBehaviour
     {
         if (_leftPathTrigger == true)
         {
-            _leftFence.SetActive(true);
-            _rightFence.SetActive(false);
+            _leftFence.SetActive(false);
+            _rightFence.SetActive(true);
         }
 
         if (_rightPathTrigger == true)
         {
-            _leftFence.SetActive(false);
-            _rightFence.SetActive(true);
+            _leftFence.SetActive(true);
+            _rightFence.SetActive(false);
         }
     }
 

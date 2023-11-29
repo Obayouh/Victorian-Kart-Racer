@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5840227726110910214}
   - component: {fileID: 8814982061093347570}
   - component: {fileID: 2310741934765647576}
+  - component: {fileID: 130544884692274469}
   m_Layer: 0
   m_Name: CauldronRed
   m_TagString: Untagged
@@ -84,6 +85,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &130544884692274469
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066332872396511092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4164511204261677510, guid: ff1ba162d2f7db04889fc8ac1139fdcb, type: 3}
 --- !u!1001 &56576357712855937
 PrefabInstance:
   m_ObjectHideFlags: 0

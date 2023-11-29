@@ -6,7 +6,7 @@ using UnityEngine;
 public class PitchforkTrap : MonoBehaviour
 {
     [SerializeField] private List<Pitchfork> ListPitchforks = new List<Pitchfork>();
-    [SerializeField] private AudioSource _clangSFX;
+    [SerializeField] public AudioSource _clangSFX;
 
     Coroutine pitchforkTriggerRoutine = null;
     bool pitchforkReloaded = true;
