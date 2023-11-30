@@ -50,6 +50,7 @@ public class Finish : MonoBehaviour
                 if (currentLap == totalLaps)
                 {
                     raceFinished = true;
+                    endRaceText.enabled = true;
                     endRaceText.text = "Race Finished!\nTotal Time: " + FormatTime(totalRaceTime);
                     gameManager.SaveLapTime(totalRaceTime); // Use GameManager to save lap time
                     Invoke("LoadMainMenu", 3f); // Load main menu after a delay

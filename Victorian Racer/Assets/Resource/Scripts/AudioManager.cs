@@ -26,6 +26,10 @@ public class AudioManager : MonoBehaviour
     private float _clangVolume;
     private float _wooshVolume;
 
+    Scene currentScene;
+    string sceneName;
+
+
     [SerializeField] private bool _mute = false;
 
     private void Awake()
@@ -35,13 +39,25 @@ public class AudioManager : MonoBehaviour
         _raceCountdown = FindObjectOfType<RaceCountdown>();
         _pitchforkTrap = FindObjectOfType<PitchforkTrap>();
         _fireBallAbility = FindObjectOfType<FireBallAbility>();
-
-
     }
 
     private void Start()
     {
         //MuteSound();
+        currentScene = SceneManager.GetActiveScene();
+
+        sceneName = currentScene.name;
+
+        GetInt("mute");
+
+        if (GetInt("mute") == 0)
+        {
+            UnMuteSound();
+        }
+        else if (GetInt("mute") == 1)
+        {
+            MuteSound();
+        }
 
     }
 
@@ -61,15 +77,17 @@ public class AudioManager : MonoBehaviour
     public void MuteSound()
     {
         _mute = true;
+        DeleteKey("mute");
+        SetInt("mute", 1);
 
         if (_mute == true)
         {
-            if (SceneManager.sceneCount == 0)
+            if (currentScene.name == "main menu")
             {
                 //_mainMenuChant.volume = 0.0f;
                 _mainMenuChant.mute = true;
             }
-            if (SceneManager.sceneCount == 1)
+            if (currentScene.name == "MainRace")
             {
                 //_carControls._carDriveSFX.volume = 0.0f;
                 //_carControls._driftSFX.volume = 0.0f;
@@ -90,10 +108,6 @@ public class AudioManager : MonoBehaviour
                 _pitchforkTrap._clangSFX.mute = true;
                 _fireBallAbility._fireWooshSFX.mute = true;
             }
-            else
-            {
-                ;
-            }
         }
     }
 
@@ -101,14 +115,17 @@ public class AudioManager : MonoBehaviour
     {
         _mute = false;
 
+        DeleteKey("mute");
+        SetInt("mute", 0);
+
         if (_mute == false)
         {
-            if (SceneManager.sceneCount == 0)
+            if (currentScene.name == "main menu")
             {
                 _mainMenuChant.mute = false;
             }
 
-            if (SceneManager.sceneCount == 1)
+            if (currentScene.name == "MainRace")
             {
                 //_carControls._carDriveSFX.volume = _driveVolume;
                 //_carControls._driftSFX.volume = _driftVolume;
@@ -131,4 +148,20 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    private void SetInt(string KeyName, int Value)
+    {
+        PlayerPrefs.SetInt(KeyName, Value);
+    }
+
+    private int GetInt(string KeyName)
+    {
+       return PlayerPrefs.GetInt(KeyName);
+    }
+
+    public void DeleteKey(string KeyName)
+    {
+        PlayerPrefs.DeleteKey(KeyName);
+    }
+
 }
